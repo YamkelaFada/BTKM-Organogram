@@ -1,0 +1,1575 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EC DoE Infrastructure PSU – Org Chart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        font-family: "DM Sans", sans-serif;
+        background: #f0f4f8;
+        color: #1e293b;
+        overflow: hidden;
+      }
+      #ui {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+      }
+      .hdr {
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 10px 20px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+      }
+      .hdr-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .hdr h1 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .hdr p {
+        font-size: 0.68rem;
+        color: #64748b;
+        margin-top: 1px;
+      }
+      .alert {
+        background: #fffbeb;
+        border: 1px solid #fcd34d;
+        border-radius: 6px;
+        padding: 4px 9px;
+        font-size: 0.64rem;
+        font-weight: 700;
+        color: #92400e;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .hdr-bot {
+        margin-top: 7px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+      .legend {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .leg {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #334155;
+      }
+      .ldot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
+      .stats {
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 5px 20px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+      .sv {
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .sl {
+        font-size: 0.58rem;
+        color: #64748b;
+        font-weight: 500;
+        margin-top: 1px;
+      }
+      .sdiv {
+        width: 1px;
+        background: #e2e8f0;
+        align-self: stretch;
+      }
+      .toolbar {
+        background: #fff;
+        border-bottom: 2px solid #e2e8f0;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tab {
+        padding: 6px 14px;
+        font-size: 0.74rem;
+        font-weight: 600;
+        color: #64748b;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.15s;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+      .tab:hover {
+        color: #1d4ed8;
+      }
+      .tab.active {
+        color: #1d4ed8;
+        border-bottom-color: #1d4ed8;
+      }
+      .tab-name {
+        font-size: 0.74rem;
+        font-weight: 700;
+      }
+      .tab-pills {
+        display: flex;
+        gap: 3px;
+      }
+      .tp {
+        font-size: 0.57rem;
+        font-weight: 800;
+        padding: 1px 5px;
+        border-radius: 999px;
+      }
+      .tp.f {
+        background: #dcfce7;
+        color: #14532d;
+        border: 1px solid #86efac;
+      }
+      .tp.v {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .tp.p {
+        background: #dbeafe;
+        color: #1e3a8a;
+        border: 1px solid #93c5fd;
+      }
+      .nav-hint {
+        background: #f1f5f9;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 3px 20px;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 0.62rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+      .nav-hint kbd {
+        display: inline-block;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 3px;
+        padding: 0 4px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.58rem;
+        color: #334155;
+        box-shadow: 0 1px 0 #cbd5e1;
+        margin: 0 1px;
+      }
+      .zoom-row {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 3px 0;
+      }
+      .zb {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.12s;
+      }
+      .zb:hover {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .zb.fit {
+        width: auto;
+        padding: 0 9px;
+        font-size: 0.67rem;
+      }
+      .zlbl {
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #64748b;
+        min-width: 36px;
+        text-align: center;
+      }
+      #vp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        cursor: grab;
+      }
+      #vp.grab {
+        cursor: grabbing;
+      }
+      #stage {
+        position: absolute;
+        transform-origin: 0 0;
+      }
+
+      /* ── ORG TREE connectors ── */
+      .org-tree {
+        display: inline-block;
+        padding: 40px 60px;
+      }
+      .org-tree ul {
+        padding-top: 26px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      .org-tree li {
+        list-style: none;
+        text-align: center;
+        position: relative;
+        padding: 26px 8px 0;
+      }
+      .org-tree li::before,
+      .org-tree li::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-top: 2px solid #94a3b8;
+        width: 50%;
+        height: 26px;
+      }
+      .org-tree li::after {
+        right: auto;
+        left: 50%;
+        border-left: 2px solid #94a3b8;
+      }
+      .org-tree li:only-child::before,
+      .org-tree li:only-child::after {
+        display: none;
+      }
+      .org-tree li:only-child {
+        padding-top: 0;
+      }
+      .org-tree li:first-child::before,
+      .org-tree li:last-child::after {
+        border: 0;
+      }
+      .org-tree li:first-child::after {
+        border-radius: 7px 0 0 0;
+      }
+      .org-tree li:last-child::before {
+        border-right: 2px solid #94a3b8;
+        border-radius: 0 7px 0 0;
+      }
+      .org-tree ul ul::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 2px solid #94a3b8;
+        width: 0;
+        height: 26px;
+      }
+
+      /* ── PEER GROUP: Chief + PSU side by side ── */
+      .peer-group {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .peer-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+      }
+      .peer-chief {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .peer-hline {
+        height: 2px;
+        width: 20px;
+        flex-shrink: 0;
+        align-self: center;
+        background: repeating-linear-gradient(
+          to right,
+          #059669 0 5px,
+          transparent 5px 9px
+        );
+      }
+      .psu-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .psu-label {
+        font-size: 0.47rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #065f46;
+        background: #d1fae5;
+        border: 1px solid #6ee7b7;
+        border-radius: 3px;
+        padding: 1px 5px;
+        margin-bottom: 3px;
+        white-space: nowrap;
+        align-self: center;
+      }
+      .peer-stem {
+        width: 2px;
+        height: 26px;
+        background: #94a3b8;
+        flex-shrink: 0;
+      }
+
+      /* ── Chief Director ellipse ── */
+      .node-chief {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #4dd9c0;
+        border: 2px solid #2bb5a0;
+        border-radius: 50px;
+        padding: 9px 24px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #0f3830;
+        box-shadow: 0 3px 12px rgba(77, 217, 192, 0.4);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        min-width: 170px;
+      }
+      .overall-banner {
+        background: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 7px;
+        padding: 5px 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 0.63rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .ob-lbl {
+        color: #94a3b8;
+        font-size: 0.56rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── Standard node card ── */
+      .node {
+        display: inline-flex;
+        flex-direction: column;
+        width: 180px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s;
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+      }
+      .node:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+      }
+
+      /* ── PSU peer card ── */
+      .psu-card {
+        display: inline-flex;
+        flex-direction: column;
+        width: 165px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #6ee7b7;
+        flex-shrink: 0;
+      }
+
+      .nh {
+        padding: 7px 10px;
+        font-size: 0.66rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.3;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .nb {
+        padding: 5px 9px 7px;
+        font-size: 0.59rem;
+        line-height: 1.5;
+      }
+      .rank-tag {
+        font-size: 0.47rem;
+        font-weight: 800;
+        opacity: 0.85;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0 4px;
+        border-radius: 3px;
+        display: inline-block;
+        margin-bottom: 2px;
+      }
+
+      /* colour themes */
+      .c-blue .nh {
+        background: #2196f3;
+        color: #fff;
+      }
+      .c-blue .nb {
+        background: #e3f2fd;
+      }
+      .c-green .nh {
+        background: #059669;
+        color: #fff;
+      }
+      .c-green .nb {
+        background: #ecfdf5;
+      }
+      .c-orange.nh {
+        background: #e67e22;
+        color: #fff;
+      }
+      .c-orange.nb {
+        background: #fff3e0;
+      }
+      .c-purple.nh {
+        background: #9b59b6;
+        color: #fff;
+      }
+      .c-purple.nb {
+        background: #f3e6ff;
+      }
+      .psu-card .nh {
+        background: #059669;
+        color: #fff;
+      }
+      .psu-card .nb {
+        background: #ecfdf5;
+      }
+
+      /* role rows */
+      .rrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3px;
+        padding: 1px 0;
+      }
+      .rname {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #374151;
+        font-weight: 500;
+      }
+      .rname.vac {
+        color: #991b1b;
+        font-style: italic;
+      }
+      .rbadge {
+        font-size: 0.53rem;
+        font-weight: 800;
+        padding: 1px 4px;
+        border-radius: 999px;
+        flex-shrink: 0;
+        min-width: 16px;
+        text-align: center;
+      }
+      .rbadge.filled {
+        background: #dcfce7;
+        color: #14532d;
+        border: 1px solid #86efac;
+      }
+      .rbadge.vacant {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .rbadge.psu {
+        background: #dbeafe;
+        color: #1e3a8a;
+        border: 1px solid #93c5fd;
+      }
+
+      /* section summary pills in node headers */
+      .hd-pills {
+        display: flex;
+        gap: 3px;
+        justify-content: center;
+        margin-top: 3px;
+      }
+      .hd-pill {
+        font-size: 0.49rem;
+        font-weight: 800;
+        padding: 0 4px;
+        border-radius: 999px;
+      }
+      .hd-pill.f {
+        background: #dcfce7;
+        color: #14532d;
+        border: 1px solid #86efac;
+      }
+      .hd-pill.v {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+      }
+      .hd-pill.p {
+        background: #dbeafe;
+        color: #1e3a8a;
+        border: 1px solid #93c5fd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ui">
+      <div class="hdr">
+        <div class="hdr-top">
+          <div>
+            <h1>EC DoE Infrastructure PSU — Organisational Chart</h1>
+            <p>
+              PSU resources sit at the <strong>same level</strong> as the Chief
+              they support (dashed green link) · DoE subordinates
+              <strong>report down</strong> to their Chief (solid line)
+            </p>
+          </div>
+          <div class="alert">
+            ⚠️ Transfer of Infrastructure Delivery to DPW currently in
+            operations.
+          </div>
+        </div>
+        <div class="hdr-bot">
+          <div class="legend">
+            <div class="leg">
+              <div class="ldot" style="background: #2196f3"></div>
+              DoE Post – Filled
+            </div>
+            <div class="leg">
+              <div class="ldot" style="background: #dc2626"></div>
+              Vacant Post
+            </div>
+            <div class="leg">
+              <div class="ldot" style="background: #059669"></div>
+              PSU Peer Support
+            </div>
+            <div class="leg">
+              <div class="ldot" style="background: #9b59b6"></div>
+              Advisory / Floating
+            </div>
+            <div class="leg">
+              <span
+                style="
+                  width: 24px;
+                  height: 2px;
+                  display: inline-block;
+                  background: repeating-linear-gradient(
+                    to right,
+                    #059669 0 5px,
+                    transparent 5px 9px
+                  );
+                  border-radius: 2px;
+                "
+              ></span>
+              PSU peer link
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="sv" style="color: #16a34a">63</span
+          ><span class="sl">DoE Filled</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #dc2626">18</span
+          ><span class="sl">Vacant</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #2563eb">68</span
+          ><span class="sl">PSU Total</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #0f172a">149</span
+          ><span class="sl">Establishment</span>
+        </div>
+        <div class="sdiv"></div>
+
+        <div class="stat">
+          <span class="sv" style="color: #16a34a">45</span
+          ><span class="sl">Delivery Filled</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #dc2626">6</span
+          ><span class="sl">Delivery Vacant</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #2563eb">49</span
+          ><span class="sl">Delivery PSU (Sheet 1)</span>
+        </div>
+        <div class="sdiv"></div>
+        <div class="stat">
+          <span class="sv" style="color: #16a34a">16</span
+          ><span class="sl">Planning Filled</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #dc2626">12</span
+          ><span class="sl">Planning Vacant</span>
+        </div>
+        <div class="stat">
+          <span class="sv" style="color: #2563eb">2</span
+          ><span class="sl">Planning PSU</span>
+        </div>
+        <div class="sdiv"></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="tabs">
+          <div class="tab active" onclick="showTab(this, 'full')" id="tab-full">
+            <span class="tab-name">Full Chart</span
+            ><span class="tab-pills" id="pills-full"></span>
+          </div>
+          <div
+            class="tab"
+            onclick="showTab(this, 'delivery')"
+            id="tab-delivery"
+          >
+            <span class="tab-name">Dir. Delivery</span
+            ><span class="tab-pills" id="pills-delivery"></span>
+          </div>
+          <div
+            class="tab"
+            onclick="showTab(this, 'planning')"
+            id="tab-planning"
+          >
+            <span class="tab-name">Dir. Planning</span
+            ><span class="tab-pills" id="pills-planning"></span>
+          </div>
+          <div class="tab" onclick="showTab(this, 'support')" id="tab-support">
+            <span class="tab-name">Support Units</span
+            ><span class="tab-pills" id="pills-support"></span>
+          </div>
+        </div>
+  
+          <button class="zb" onclick="doZoom(-0.1)">−</button>
+          <span class="zlbl" id="zlbl">100%</span>
+          <button class="zb" onclick="doZoom(+0.1)">+</button>
+          <button class="zb fit" onclick="fitScreen()">Fit</button>
+        </div>
+      </div>
+
+      <div class="nav-hint">
+        <span>🖱️ <strong>Drag</strong> to pan &nbsp;·&nbsp; <strong>Scroll</strong> to pan &nbsp;·&nbsp; <kbd>Ctrl</kbd>+<kbd>Scroll</kbd> to zoom</span>
+        <span>⌨️ <kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> arrow keys &nbsp;·&nbsp; <kbd>+</kbd> <kbd>−</kbd> zoom &nbsp;·&nbsp; <kbd>0</kbd> fit</span>
+      </div>
+    </div>
+
+    <div id="vp">
+      <div id="stage"><div class="org-tree" id="tree"></div></div>
+    </div>
+
+    <script>
+      /* ═══════════════════════════════════════════════════════
+   DATA MODEL
+   - roles[]      : DoE posts (filled/vacant) shown in card body
+   - psuSupport[] : PSU staff at SAME LEVEL as this node (peer)
+   - children[]   : DoE subordinates that REPORT DOWN to this node
+═══════════════════════════════════════════════════════ */
+      const ORG = {
+        type: "chief",
+        label: "CHIEF DIRECTOR",
+        name: "Malikhanye Mduba",
+        children: [
+          /* ── Advisory / Floating ── */
+
+          ////////////////////////////////////////////////////
+
+          {
+            label: "Manager: Infrastructure Grant & Prog Rpt",
+            color: "green",
+            rank: "PSU Lead",
+            psuSupport: [
+              {
+                role: "Senior programme Administrators/Programme Schedule",
+                psu: 1,
+              },
+            ],
+
+            children: [
+              {
+                label: "Communications",
+                color: "purple",
+                rank: "PSU",
+
+                psuSupport: [{ role: "Communications Specialist", psu: 1 }],
+              },
+
+              {
+                label: "EFMS",
+                color: "purple",
+                rank: "PSU",
+                psuSupport: [
+                  { role: "Systems Manager - Leader", psu: 1 },
+                  { role: "Training Lead & Systems Controller", psu: 1 },
+                  { role: "Sys Compliance Lead / IRM Controller", psu: 1 },
+                  { role: "Snr Admin / IRM / Data Analyst", psu: 1 },
+                ],
+              },
+              {
+                label: "Audit Team",
+                color: "purple",
+                rank: "PSU",
+                psuSupport: [
+                  { role: "Audit & Compliance Lead", psu: 1 },
+                  { role: "Immovable Assets Lead", psu: 1 },
+                  { role: "WIP Assets Lead", psu: 1 },
+                  { role: "RFU Assets Lead", psu: 1 },
+                  { role: "Fair Value Assets Lead", psu: 1 },
+                  { role: "Accounting Clerks (Immovable)", psu: 4 },
+                ],
+              },
+            ],
+          },
+          //////////////////////////////////////////////////////////////////////////
+
+          /* ══════════════════════════════════════════
+       DIR. DELIVERY
+    ══════════════════════════════════════════ */
+          {
+            label: "Dir. Delivery",
+            name: "Mr Sivuka",
+            color: "blue",
+            rank: "Director",
+            roles: [
+              {
+                role: "Director: Infrastructure Delivery",
+                filled: 1,
+                vacant: 0,
+              },
+            ],
+            children: [
+              /* Chief Architect (vacant)
+           ├── PSU: 1 Architect works ALONGSIDE Chief (peer)
+           └── DoE: 1 Architect REPORTS DOWN to Chief            */
+              {
+                label: "Chief Architect",
+                color: "blue",
+                rank: "Chief",
+                roles: [{ role: "Chief Architect", filled: 0, vacant: 1 }],
+                psuSupport: [{ role: "PSU Architect", psu: 1 }],
+                children: [
+                  {
+                    label: "Architect",
+                    color: "orange",
+                    rank: "Post",
+                    roles: [{ role: "Architect (DoE)", filled: 1, vacant: 0 }],
+                  },
+                ],
+              },
+
+              /* Chief QS (vacant)
+           ├── PSU: 3 QS work ALONGSIDE Chief (peer)
+           └── DoE: 1 QS REPORTS DOWN to Chief                   */
+              {
+                label: "Chief QS",
+                color: "blue",
+                rank: "Chief",
+                roles: [
+                  { role: "Chief Quantity Surveyor", filled: 0, vacant: 1 },
+                ],
+                psuSupport: [{ role: "PSU Quantity Surveyor ", psu: 3 }],
+                children: [
+                  {
+                    label: "QS",
+                    color: "orange",
+                    rank: "Post",
+                    roles: [
+                      { role: "Quantity Surveyor (DoE)", filled: 1, vacant: 0 },
+                    ],
+                  },
+                ],
+              },
+
+              /* Chief Engineer (filled)
+           ├── PSU: 1 Civil Engineer works ALONGSIDE Chief (peer)
+           └── DoE: Engineer/DD Infra PM REPORTS DOWN            */
+              {
+                label: "Chief Engineer",
+                color: "blue",
+                rank: "Chief",
+                roles: [{ role: "Chief Engineer", filled: 1, vacant: 0 }],
+                psuSupport: [{ role: "PSU Chief Engineer", psu: 1 }],
+                children: [
+                  {
+                    label: "Engineer / DD Infra PM",
+                    color: "orange",
+                    rank: "Post",
+                    roles: [
+                      { role: "Engineer / DD Infra PM", filled: 0, vacant: 0 },
+                    ],
+                  },
+                ],
+              },
+
+              /* DD Equipment — Delivery team below
+           Delivery Team has its OWN PSU peers (works site team) */
+              {
+                label: "DD Equipment",
+                name: "Mr Msiwa",
+                color: "blue",
+                rank: "Dep. Director",
+                roles: [
+                  { role: "Deputy Director Equipment", filled: 1, vacant: 0 },
+                ],
+
+                children: [
+                  {
+                    label: "Control Works Inspectors",
+                    color: "orange",
+                    rank: "DOE",
+                    roles: [
+                      {
+                        role: "Control Works Inspectors",
+                        filled: 5,
+                        vacant: 0,
+                      },
+                      { role: "Chief Works Inspectors", filled: 4, vacant: 3 },
+                      { role: "Works Inspectors", filled: 24, vacant: 0 },
+                    ],
+                  },
+
+                  {
+                    label: "Programme Manager",
+                    color: "green",
+                    rank: "PSU Lead",
+                    psuSupport: [{ role: "Programme Manager", psu: 1 }],
+
+                    children: [
+                      {
+                        label: "Project Delivery Support",
+                        color: "purple",
+                        rank: "PSU",
+                        psuSupport: [
+                          { role: "Senior Project Managers", psu: 6 },
+                          { role: "Administrators", psu: 4 },
+                          { role: "Snr Admin Officers", psu: 2 },
+                          { role: "Clerks of Works", psu: 8 },
+                          { role: "Civil Engineer", psu: 1 },
+                          { role: "Mechanical Engineer", psu: 1 },
+                          { role: "Electrical Engineer", psu: 1 },
+                        ],
+                      },
+
+                      {
+                        label: "Stakeholder & Safety Support",
+                        color: "purple",
+                        rank: "PSU",
+                        psuSupport: [
+                          { role: "Stakeholder Engagement", psu: 2 },
+                          { role: "Health & Safety Agents", psu: 2 },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              }, // ← IMPORTANT comma was missing here
+
+              /* SCM Lead (PSU-led)
+           ├── PSU: SCM specialists work ALONGSIDE SCM Lead
+           └── DoE: SCM officials REPORT DOWN                    */
+              {
+                label: "Deputy Director SCM",
+                color: "blue",
+                rank: "Lead",
+                roles: [
+                  {
+                    role: "Deputy Director SCM",
+                    filled: 1,
+                    vacant: 0,
+                    psu: 0,
+                  },
+                ],
+                psuSupport: [
+                  { role: "SCM Lead", psu: 1 },
+                  { role: "SCM Programme Manager", psu: 1 },
+                  { role: "SCM DD Audit Rediness", psu: 1 },
+                  { role: "SCM DD Procurement", psu: 1 },
+
+                  { role: "SCM Policy Development", psu: 1 },
+                  { role: "SCM IA Support ", psu: 7 },
+                ],
+                children: [
+                  {
+                    label: "DoE SCM Team",
+                    color: "orange",
+                    rank: "Team",
+                    roles: [
+                      { role: "Assistant Director SCM", filled: 1 },
+                      { role: "Clerk SCM ", filled: 2, vacant: 0 },
+                    ],
+                  },
+                ],
+              },
+
+              /* DD Finance — Finance team reports below */
+              {
+                label: "DD Finance",
+                color: "blue",
+                rank: "Dep. Director",
+                roles: [
+                  { role: "Deputy Director Finance", filled: 1, vacant: 0 },
+                ],
+                children: [
+                  {
+                    label: "Finance Team",
+                    color: "orange",
+                    rank: "Team",
+                    roles: [
+                      {
+                        role: "Assistant Director Finance",
+                        filled: 0,
+                        vacant: 1,
+                      },
+                      { role: "Senior State Accountant", filled: 1, vacant: 0 },
+                      { role: "Accounting Clerks", filled: 2, vacant: 0 },
+                    ],
+                    psuSupport: [
+                      { role: "Finance Administrator Lead", psu: 1 },
+                      { role: "System and Reporting Lead (Finance)", psu: 1 },
+                      { role: "Accounting Clerk (Finance)", psu: 3 },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+
+          /* ══════════════════════════════════════════
+       DIR. PLANNING
+    ══════════════════════════════════════════ */
+          {
+            label: "Dir. Planning",
+            name: "Mr Pefole",
+            color: "blue",
+            rank: "Director",
+            roles: [
+              {
+                role: "Director: Planning",
+                filled: 1,
+                vacant: 0,
+              },
+            ],
+            children: [
+              /* Technical Support — all vacant DoE; 2 PSU work alongside */
+              {
+                label: "Chief Electrical/Mechanical Engineer",
+                color: "blue",
+                rank: "Section",
+                roles: [
+                  {
+                    role: "Chief Electrical/Mech Engineer",
+                    filled: 0,
+                    vacant: 1,
+                  },
+                ],
+
+                children: [
+                  {
+                    label: "",
+                    color: "orange",
+                    rank: "",
+                    roles: [
+                      { role: "Electrical Engineer", filled: 0, vacant: 1 },
+                      { role: "Mechanical Engineer", filled: 0, vacant: 1 },
+                      {
+                        role: "Chief Civil/Structural Engineer",
+                        filled: 0,
+                        vacant: 1,
+                      },
+                    ],
+                  },
+                ],
+              },
+
+              {
+                label: "CHIEF TOWN & REGIONAL PLANNER",
+                color: "blue",
+                rank: "Section",
+                roles: [
+                  {
+                    role: "Chief town & regional planner",
+                    filled: 1,
+                    vacant: 0,
+                  },
+                ],
+                psuSupport: [
+                  { role: "Architect", filled: 0, vacant: 0, psu: 1 },
+                  { role: "Quantity Surveyor", filled: 0, vacant: 0, psu: 1 },
+                ],
+                children: [
+                  {
+                    label: "",
+                    color: "orange",
+                    rank: "",
+                    roles: [
+                      { role: "Architect", filled: 0, vacant: 1 },
+                      { role: "Quantity Surveyor", filled: 0, vacant: 1 },
+                      {
+                        role: "GIS Control Technologist",
+                        filled: 0,
+                        vacant: 1,
+                      },
+                      { role: "Architect (contract)", filled: 0, vacant: 1 },
+                      {
+                        role: "GIS Technitian",
+                        filled: 1,
+                        vacant: 0,
+                      },
+                      {
+                        role: "Town & regional planner",
+                        filled: 1,
+                        vacant: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                label: "DEPUTY DIRECTOR PROPERTIES",
+                color: "blue",
+                rank: "Section",
+                roles: [
+                  {
+                    role: "Deputy Director Properties",
+                    filled: 1,
+                    vacant: 0,
+                  },
+                ],
+
+                children: [
+                  {
+                    label: "",
+                    color: "orange",
+                    rank: "",
+                    roles: [
+                      {
+                        role: "Administration officer (Properties)",
+                        filled: 1,
+                        vacant: 2,
+                      },
+                      {
+                        role: "Assistant Director Properties",
+                        filled: 3,
+                        vacant: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+
+              /* Planning & Properties — no PSU */
+              {
+                label: "CHIEF EDUCATION SPECIALIST",
+                color: "blue",
+                rank: "Section",
+                roles: [
+                  {
+                    role: "Chief Education Specialis",
+                    filled: 1,
+                    vacant: 0,
+                  },
+                ],
+
+                children: [
+                  {
+                    label: "",
+                    color: "orange",
+                    rank: "",
+                    roles: [
+                      {
+                        role: "Deputy Chief Education Specialist",
+                        filled: 4,
+                        vacant: 1,
+                      },
+                      {
+                        role: "Deputy DirectorTechnical Support (contract)",
+                        filled: 1,
+                        vacant: 1,
+                      },
+                      {
+                        role: "Senior Admin officer (data analysts)",
+                        filled: 2,
+                        vacant: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      /* ── Tab totals ── */
+      const TOTALS = {
+        full: { f: 63, v: 18, p: 68 },
+        delivery: { f: 46, v: 6, p: 50 },
+        planning: { f: 17, v: 12, p: 2 },
+        support: { f: 0, v: 0, p: 19 },
+      };
+
+      /* ── Section header summary pills ── */
+      const SECT = {
+        "Dir. Delivery": { f: 46, v: 6, p: 50 },
+        "Dir. Planning": { f: 17, v: 12, p: 2 },
+        "DIR. PLANNING": { f: 17, v: 12, p: 2 },
+        EFMS: { f: 0, v: 0, p: 4 },
+        Communications: { f: 0, v: 0, p: 1 },
+        "Manager: Infrastructure Grant & Prog Rpt": { f: 0, v: 0, p: 1 },
+        "Senior programme Administrators/Programme Schedule": {
+          f: 0,
+          v: 0,
+          p: 1,
+        },
+        "Specialist PM Rationalisation": { f: 0, v: 0, p: 1 },
+        "Audit Team": { f: 0, v: 0, p: 9 },
+        "Chief Architect": { f: 1, v: 1, p: 1 },
+        "Chief QS": { f: 1, v: 1, p: 3 },
+        "Chief Engineer": { f: 1, v: 0, p: 1 },
+        "DD Equipment": { f: 34, v: 3, p: 28 },
+        "Delivery Team": { f: 33, v: 3, p: 30 },
+        "SCM Lead": { f: 4, v: 0, p: 12 },
+        "DD Finance": { f: 4, v: 1, p: 0 },
+        "Technical Support": { f: 1, v: 8, p: 2 },
+        "Deputy Director SCM": { f: 4, v: 0, p: 11 },
+        "Chief Electrical/Mechanical Engineer": { f: 0, v: 4 },
+        "CHIEF TOWN & REGIONAL PLANNER": { f: 3, v: 4, p: 2 },
+        "DEPUTY DIRECTOR PROPERTIES": { f: 5, v: 2, p: 0 },
+        "CHIEF EDUCATION SPECIALIST": { f: 8, v: 2, p: 0 },
+
+        "Planning & Properties": { f: 15, v: 4, p: 0 },
+        "DD Finance": { f: 4, v: 1, p: 5 },
+      };
+
+      /* ── Inject tab pills ── */
+      function tp(t) {
+        let h = "";
+        if (t.f) h += `<span class="tp f">${t.f}</span>`;
+        if (t.v) h += `<span class="tp v">${t.v}</span>`;
+        if (t.p) h += `<span class="tp p">${t.p}</span>`;
+        return h;
+      }
+      ["full", "delivery", "planning", "support"].forEach((k) => {
+        document.getElementById("pills-" + k).innerHTML = tp(TOTALS[k]);
+      });
+
+      /* ── Helpers ── */
+      function badge(n, type) {
+        return `<span class="rbadge ${type}">${n}</span>`;
+      }
+
+      function roleRows(roles) {
+        if (!roles || !roles.length) return "";
+        return roles
+          .map((r) => {
+            const F = r.filled > 0,
+              V = r.vacant > 0,
+              P = r.psu > 0;
+            return `<div class="rrow">
+      <span class="rname${V && !F ? " vac" : ""}">${r.role}</span>
+      ${F ? badge(r.filled, "filled") : ""}
+      ${V ? badge(r.vacant, "vacant") : ""}
+      ${P ? badge(r.psu, "psu") : ""}
+    </div>`;
+          })
+          .join("");
+      }
+
+      function psuRows(list) {
+        return list
+          .map(
+            (r) => `<div class="rrow">
+    <span class="rname">${r.role}</span>${badge(r.psu, "psu")}
+  </div>`,
+          )
+          .join("");
+      }
+
+      function hdPills(label) {
+        const t = SECT[label];
+        if (!t) return "";
+        let p = [];
+        if (t.f) p.push(`<span class="hd-pill f">${t.f}</span>`);
+        if (t.v) p.push(`<span class="hd-pill v">${t.v}</span>`);
+        if (t.p) p.push(`<span class="hd-pill p">${t.p}</span>`);
+        return p.length ? `<div class="hd-pills">${p.join("")}</div>` : "";
+      }
+
+      /* ── Card builders ── */
+      function chiefCard(node) {
+        const t = TOTALS.full;
+        return `<div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+    <div class="overall-banner">
+      <span class="ob-lbl">Overall</span>
+      <span style="color:#86efac">${t.f} filled</span>
+      <span style="color:#475569">·</span>
+      <span style="color:#fca5a5">${t.v} vacant</span>
+      <span style="color:#475569">·</span>
+      <span style="color:#93c5fd">${t.p} PSU</span>
+      <span style="color:#475569">·</span>
+      <span style="color:#fde68a">${t.f + t.v + t.p} total</span>
+    </div>
+    <div class="node-chief">
+      ${node.label}
+      ${node.name ? `<span style="font-size:.6rem;opacity:.75;font-weight:500;text-transform:none;margin-top:2px;display:block">${node.name}</span>` : ""}
+    </div>
+  </div>`;
+      }
+
+      function nodeCard(node) {
+        const col = node.color || "blue";
+        const rr = roleRows(node.roles);
+        const hp = hdPills(node.label);
+        let h = `<div class="node c-${col}">
+    <div class="nh">
+      ${node.rank ? `<span class="rank-tag">${node.rank}</span><br>` : ""}
+      ${node.label}
+      ${node.name ? `<br><span style="font-size:.58rem;opacity:.85;font-weight:500;text-transform:none">${node.name}</span>` : ""}
+      ${hp}
+    </div>`;
+        if (rr) h += `<div class="nb">${rr}</div>`;
+        h += `</div>`;
+        return h;
+      }
+
+      function psuCard(list) {
+        return `<div class="psu-card">
+    <div class="nh">PSU Support</div>
+    <div class="nb">${psuRows(list)}</div>
+  </div>`;
+      }
+
+      /* ══════════════════════════════════════════════════════
+   TREE BUILDER — the core logic
+
+   If a node has psuSupport:
+     render a .peer-group containing:
+       1. .peer-row  →  [nodeCard] --dashed-- [psuCard]
+       2. optional .peer-stem + children ul below nodeCard
+
+   If no psuSupport: standard CSS connector tree node
+══════════════════════════════════════════════════════ */
+      function buildTree(node) {
+        if (node.type === "chief") {
+          let h = chiefCard(node);
+          if (node.children && node.children.length) {
+            h += `<ul>${node.children.map((c) => `<li>${buildTree(c)}</li>`).join("")}</ul>`;
+          }
+          return h;
+        }
+
+        const hasPSU = node.psuSupport && node.psuSupport.length;
+        const hasKids = node.children && node.children.length;
+
+        if (!hasPSU) {
+          // Plain node
+          let h = nodeCard(node);
+          if (hasKids) {
+            h += `<ul>${node.children.map((c) => `<li>${buildTree(c)}</li>`).join("")}</ul>`;
+          }
+          return h;
+        }
+
+        // Node WITH PSU peers
+        const card = nodeCard(node);
+        const pCard = psuCard(node.psuSupport);
+
+        let kidsHTML = "";
+        if (hasKids) {
+          kidsHTML = `<div class="peer-stem"></div>
+      <ul>${node.children.map((c) => `<li>${buildTree(c)}</li>`).join("")}</ul>`;
+        }
+
+        return `<div class="peer-group">
+    <div class="peer-row">
+      <div class="peer-chief">${card}</div>
+      <div class="peer-hline"></div>
+      <div class="psu-col">
+        <span class="psu-label">PSU — same level, peer support</span>
+        ${pCard}
+      </div>
+    </div>
+    ${kidsHTML}
+  </div>`;
+      }
+
+      /* ── Focused sub-trees ── */
+      const DATA = {
+        full: ORG,
+        delivery: {
+          type: "chief",
+          label: "DIR. DELIVERY",
+          name: "Mr Sivuka",
+          children: ORG.children.find((c) => c.label === "Dir. Delivery")
+            .children,
+        },
+        planning: {
+          type: "chief",
+          label: "DIR. PLANNING",
+          name: "Mr Pefole",
+          children: ORG.children.find((c) => c.label === "Dir. Planning")
+            .children,
+        },
+        support: {
+          type: "chief",
+          label: "SUPPORT UNITS",
+          children: ORG.children.filter((c) =>
+            [
+              "EFMS",
+              "Communications",
+              "Manager: Infrastructure Grant & Prog Rpt",
+              "Senior programme Administrators/Programme Schedule",
+              "Specialist PM Rationalisation",
+              "Audit Team",
+            ].includes(c.label),
+          ),
+        },
+      };
+
+      /* ── Pan / Zoom ── */
+      const vp = document.getElementById("vp"),
+        stage = document.getElementById("stage");
+      let tx = 0, ty = 0, sc = 1,
+          drag = false, sx = 0, sy = 0, stx = 0, sty = 0;
+
+      // Momentum state
+      let vx = 0, vy = 0, lastMx = 0, lastMy = 0, rafId = null;
+
+      function applyT() {
+        stage.style.transform = `translate(${tx}px,${ty}px) scale(${sc})`;
+        document.getElementById("zlbl").textContent = Math.round(sc * 100) + "%";
+      }
+      function doZoom(d, mx, my) {
+        const r = vp.getBoundingClientRect();
+        mx = mx ?? r.width / 2;
+        my = my ?? r.height / 2;
+        const ns = Math.min(2.5, Math.max(0.1, sc + d)), ratio = ns / sc;
+        tx = mx - ratio * (mx - tx);
+        ty = my - ratio * (my - ty);
+        sc = ns;
+        applyT();
+      }
+      function fitScreen() {
+        stage.style.transform = "translate(0,0) scale(1)";
+        const nw = stage.offsetWidth, nh = stage.offsetHeight,
+              r = vp.getBoundingClientRect(),
+              fs = Math.min((r.width - 60) / nw, (r.height - 60) / nh, 1);
+        sc = fs;
+        tx = (r.width - nw * sc) / 2;
+        ty = (r.height - nh * sc) / 2;
+        applyT();
+      }
+
+      // Momentum animation
+      function momentumLoop() {
+        if (Math.abs(vx) < 0.5 && Math.abs(vy) < 0.5) { vx = 0; vy = 0; return; }
+        tx += vx; ty += vy;
+        vx *= 0.92; vy *= 0.92;
+        applyT();
+        rafId = requestAnimationFrame(momentumLoop);
+      }
+
+      // Mouse drag with momentum
+      vp.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        cancelAnimationFrame(rafId);
+        drag = true; vx = 0; vy = 0;
+        vp.classList.add("grab");
+        sx = e.clientX; sy = e.clientY;
+        stx = tx; sty = ty;
+        lastMx = e.clientX; lastMy = e.clientY;
+      });
+      window.addEventListener("mousemove", (e) => {
+        if (!drag) return;
+        vx = e.clientX - lastMx;
+        vy = e.clientY - lastMy;
+        lastMx = e.clientX; lastMy = e.clientY;
+        tx = stx + (e.clientX - sx);
+        ty = sty + (e.clientY - sy);
+        applyT();
+      });
+      window.addEventListener("mouseup", () => {
+        if (!drag) return;
+        drag = false;
+        vp.classList.remove("grab");
+        rafId = requestAnimationFrame(momentumLoop);
+      });
+
+      // Touch: single-finger pan with momentum, two-finger pinch-zoom
+      let touch2Dist = null;
+      vp.addEventListener("touchstart", (e) => {
+        cancelAnimationFrame(rafId);
+        vx = 0; vy = 0;
+        if (e.touches.length === 2) {
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          touch2Dist = Math.hypot(dx, dy);
+          drag = false;
+        } else {
+          const t = e.touches[0];
+          drag = true;
+          sx = t.clientX; sy = t.clientY;
+          stx = tx; sty = ty;
+          lastMx = t.clientX; lastMy = t.clientY;
+        }
+      }, { passive: true });
+
+      vp.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 2 && touch2Dist !== null) {
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          const newDist = Math.hypot(dx, dy);
+          const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          const r = vp.getBoundingClientRect();
+          doZoom((newDist - touch2Dist) * 0.005, cx - r.left, cy - r.top);
+          touch2Dist = newDist;
+        } else if (drag && e.touches.length === 1) {
+          const t = e.touches[0];
+          vx = t.clientX - lastMx;
+          vy = t.clientY - lastMy;
+          lastMx = t.clientX; lastMy = t.clientY;
+          tx = stx + (t.clientX - sx);
+          ty = sty + (t.clientY - sy);
+          applyT();
+        }
+      }, { passive: true });
+
+      vp.addEventListener("touchend", () => {
+        drag = false; touch2Dist = null;
+        rafId = requestAnimationFrame(momentumLoop);
+      });
+
+      // Wheel: scroll = pan, Ctrl+wheel = zoom
+      vp.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        if (e.ctrlKey || e.metaKey) {
+          const r = vp.getBoundingClientRect();
+          doZoom(e.deltaY > 0 ? -0.1 : 0.1, e.clientX - r.left, e.clientY - r.top);
+        } else {
+          // Pan — invert so it feels natural
+          const speed = e.deltaMode === 1 ? 30 : 1;
+          tx -= e.deltaX * speed;
+          ty -= e.deltaY * speed;
+          applyT();
+        }
+      }, { passive: false });
+
+      // Arrow key pan
+      const ARROW_STEP = 60;
+      window.addEventListener("keydown", (e) => {
+        if (["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"].includes(e.key)) {
+          e.preventDefault();
+          if (e.key === "ArrowLeft")  tx += ARROW_STEP;
+          if (e.key === "ArrowRight") tx -= ARROW_STEP;
+          if (e.key === "ArrowUp")    ty += ARROW_STEP;
+          if (e.key === "ArrowDown")  ty -= ARROW_STEP;
+          applyT();
+        }
+        if (e.key === "=" || e.key === "+") doZoom(0.1);
+        if (e.key === "-")                  doZoom(-0.1);
+        if (e.key === "0")                  fitScreen();
+      });
+
+      /* ── Render ── */
+      function render(key) {
+        document.getElementById("tree").innerHTML =
+          `<ul><li>${buildTree(DATA[key])}</li></ul>`;
+        fitScreen();
+      }
+      function showTab(el, key) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+        render(key);
+      }
+      function posVP() {
+        vp.style.top = document.getElementById("ui").offsetHeight + "px";
+      }
+      window.addEventListener("resize", () => {
+        posVP();
+        fitScreen();
+      });
+      posVP();
+      render("full");
+    </script>
+  </body>
+</html>
